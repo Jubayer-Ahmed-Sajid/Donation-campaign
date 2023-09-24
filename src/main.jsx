@@ -5,11 +5,28 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
+import Root from './Root/Root';
+import Home from './Pages/Home/Home';
+import Donation from './Pages/Donation/Donation';
+import Statistics from './Pages/Statistics/Statistics';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element:<Root></Root>,
+    children:[{
+      path:'/',
+      element:<Home></Home>
+    },
+    {
+      path:'/donation', 
+      element:<Donation></Donation>
+    },
+    {
+      path:'/statistics',
+      element:<Statistics></Statistics>
+    }
+  ]
   },
 ]);
 
