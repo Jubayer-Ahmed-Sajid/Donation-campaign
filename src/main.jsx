@@ -4,6 +4,12 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
+
+
+
+
+
 import './index.css'
 import Root from './Root/Root';
 import Home from './Pages/Home/Home';
@@ -17,8 +23,9 @@ const router = createBrowserRouter([
     element:<Root></Root>,
     children:[{
       path:'/',
+      loader: ()=> fetch("/categories.json"),
       element:<Home></Home>,
-      loader: ()=> fetch("categories.json")
+      
     },
     {
       path:'/donation', 
