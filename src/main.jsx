@@ -16,11 +16,13 @@ import Home from './Pages/Home/Home';
 import Donation from './Pages/Donation/Donation';
 import Statistics from './Pages/Statistics/Statistics';
 import CardDetails from './Components/CardDetails/CardDetails';
+import Error from './Pages/ErrorPage/Error';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element:<Root></Root>,
+    errorElement:<Error></Error>,
     children:[{
       path:'/',
       loader: ()=> fetch("/categories.json"),
