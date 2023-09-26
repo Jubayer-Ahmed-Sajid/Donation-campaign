@@ -24,7 +24,6 @@ const Statistics = () => {
     const chartColors = ["#00C49F","#FF444A"];
 
     const options = {
-        // title: "Donation Statistics",
         colors: chartColors
     };
 
