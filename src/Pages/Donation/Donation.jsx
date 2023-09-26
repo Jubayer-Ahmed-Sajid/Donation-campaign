@@ -18,7 +18,7 @@ const Donation = () => {
     //  const donatedItemsLength = donatedItems.length;
     return (
         <div>
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {
                     notDonated ? <p className="text-4xl flex justify-center h-[80vh] items-center col-span-2"> {notDonated} </p> :
 

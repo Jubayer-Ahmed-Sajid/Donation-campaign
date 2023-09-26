@@ -38,14 +38,21 @@ const CardDetails = () => {
     return (
         <div>
             <div>
-                <div className="w-ful relative">
+                <div className="w-ful relative px-8">
+                    <div>
+
                     <img src={picture} className="w-full" alt="" />
-                    <button style={{ background: button_bg_color }} className="absolute left:8 bottom-6 py-3 px-5  md:left-16 md:bottom-14 md:py-4 md:px-7 rounded-lg  md:text-xl font-semibold text-white"
-                        onClick={saveDonationData}>Donate ${price}</button>
+                <div className="hero-overlay bottom-0 w-[84.7%] md:w-[91.5%] lg:w-[95%] bg-black opacity-50 absolute h-20 md:h-40"></div>
                 </div>
-                <h2 className="text-4xl font-bold mt-14 mb-6">{title}</h2>
-                <p>{description}</p>
+
+                    <button style={{ background: button_bg_color }} className="absolute left-16 bottom-5 py-2 md:left-16 md:bottom-9 md:py-4 md:px-7 rounded-lg  md:text-xl text-sm px-2 font-semibold text-white"
+                        onClick={saveDonationData}>Donate ${price}</button>
+                 
+                </div>
+                <h2 className=" text-xl md:text-4xl font-bold my-6 md:mt-14 md:mb-6 px-8">{title}</h2>
+                <p className="px-8">{description}</p>
             </div>
+
 
         </div>
     );
