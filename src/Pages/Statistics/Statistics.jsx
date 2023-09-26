@@ -1,43 +1,41 @@
 import { useEffect, useState } from "react";
-import { Pie, PieChart, Tooltip } from "recharts";
+import { Chart } from "react-google-charts";
 
 const Statistics = () => {
     const [donatedNumber, setDonatedNumber] = useState([]);
     useEffect(() => {
-        const totalDonation = JSON.parse(localStorage.getItem("donation"));
-        setDonatedNumber(totalDonation);
+        const storedDonation = JSON.parse(localStorage.getItem("donation"));
+        if (Array.isArray(storedDonation)) {
+            setDonatedNumber(storedDonation);
+        }
     }, []);
 
-    const totalDonationLength = donatedNumber ? donatedNumber.length : 0;
+    const totalDonationLength = donatedNumber.length;
     const totalCards = 12;
-    const myDonation =  ((totalDonationLength / totalCards) * 100).toFixed(2) ;
-    const yourDonation = parseFloat(myDonation)
-    const totalDonation = (100 - yourDonation);
+    const myDonation = ((totalDonationLength / totalCards) * 100).toFixed(2);
+    const yourDonation = parseFloat(myDonation);
+    const totalDonation = 100 - yourDonation;
 
     const data = [
-        { name: "Your Donation", value: yourDonation, fill: "#0088FE" },
-        { name: "Total Donation", value: totalDonation, fill: "#FFBB28" }
+        ["Category", "Amount"],
+        ["Your Donation", yourDonation],
+        ["Total Donation", totalDonation]
     ];
-    const Value = data.map(values => values.value)
-    console.log(Value);
+    const chartColors = ["#00C49F","#FF444A"];
+
+    const options = {
+        // title: "Donation Statistics",
+        colors: chartColors
+    };
 
     return (
-        <div>
-            <PieChart width={930} height={750}>
-                <Pie
-                    data={data}
-                    dataKey="value"
-                    nameKey="name"
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={200}
-                >
-
-                </Pie>
-                <Tooltip />
-            </PieChart>
-
-        </div>
+        <Chart
+            chartType="PieChart"
+            data={data}
+            options={options}
+            width={"100%"}
+            height={"800px"}
+        />
     );
 };
 
