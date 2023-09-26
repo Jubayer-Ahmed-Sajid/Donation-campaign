@@ -19,7 +19,6 @@ const CardDetails = () => {
     const saveDonationData = () => {
         const donationArray = []
         const donated = JSON.parse(localStorage.getItem('donation'));
-        
 
         if (!donated) {
             donationArray.push(detail)
@@ -28,9 +27,17 @@ const CardDetails = () => {
 
         }
         else {
-            donationArray.push(...donated, detail)
-            localStorage.setItem('donation', JSON.stringify(donationArray))
-            swal("Good job!", "You Have Successfully Donated!", "success");
+            const isExist = donated.find(storedItem => storedItem.id === detail.id)
+            if(!isExist){
+                donationArray.push(...donated, detail)
+                localStorage.setItem('donation', JSON.stringify(donationArray))
+                swal("Good job!", "You Have Successfully Donated!", "success");
+
+            }
+            else{
+                swal("Sorry!!!", "You have Already Donated in This Item", "error")
+            }
+           
         }
 
     }
@@ -38,12 +45,10 @@ const CardDetails = () => {
     return (
         <div>
             <div>
-                <div className="w-ful relative px-8">
-                    <div>
+                <div className="w-ful relative">
 
-                    <img src={picture} className="w-full" alt="" />
-                <div className="hero-overlay bottom-0 w-[84.7%] md:w-[91.5%] lg:w-[95%] bg-black opacity-50 absolute h-20 md:h-40"></div>
-                </div>
+                    <img src={picture} className="w-full mx-auto" alt="" />
+                <div className="hero-overlay bottom-0 bg-black opacity-50 absolute h-20 md:h-40"></div>
 
                     <button style={{ background: button_bg_color }} className="absolute left-16 bottom-5 py-2 md:left-16 md:bottom-9 md:py-4 md:px-7 rounded-lg  md:text-xl text-sm px-2 font-semibold text-white"
                         onClick={saveDonationData}>Donate ${price}</button>
